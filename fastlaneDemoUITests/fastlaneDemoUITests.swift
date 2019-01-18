@@ -12,7 +12,7 @@ class fastlaneDemoUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
-        
+        XCTAssert(true, "测试打包0")
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -33,6 +33,9 @@ class fastlaneDemoUITests: XCTestCase {
         XCTAssert(true, "测试打包")
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssert(true, "测试打包1")
+        
+        XCTAssert(false, "测试打包2")
     }
     
 }
