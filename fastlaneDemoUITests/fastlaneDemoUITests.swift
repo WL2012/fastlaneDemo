@@ -30,7 +30,7 @@ class fastlaneDemoUITests: XCTestCase {
     
     func testExample() {
         
-        XCTAssert(false, "测试打包")
+        XCTAssert(true, "测试打包")
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
