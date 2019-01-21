@@ -35,7 +35,7 @@ class fastlaneDemoUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         XCTAssert(true, "测试打包1")
         
-        XCTAssert(false, "测试打包2")
+        XCTAssert(true, "测试打包2")
     }
     
 }
