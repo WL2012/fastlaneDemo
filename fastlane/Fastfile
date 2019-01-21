@@ -33,8 +33,8 @@ platform :ios do
     	output_directory:"./build",
     	archive_path:"./Archive",       
     	)
-    tests
     firim(firim_api_token: "ed1421ff86837b720a7053684b934147")
+    tests
   	end
 
 
