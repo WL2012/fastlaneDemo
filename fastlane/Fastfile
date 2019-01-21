@@ -20,10 +20,10 @@ platform :ios do
   	lane :beta do
     increment_build_number
     match(
-    	git_url: "https://github.com/zjh171/fastlaneProvingProfile",
-    	type: "appstore" ,#can be appstore,adhoc, development,enterprise
-    	app_identifier:"com.wangliang.fastlaneDemo",
-    	username:"zjh171@qq.com",
+    	git_url: "https://gitee.com/wang1990.com/iosProvingProfile.git",
+    	type: "development" ,#can be appstore,adhoc, development,enterprise
+    	app_identifier:"com.youhong.fastlaneDemo",
+    	username:"283175161@qq.com",
     	readonly: true
     	)
     # 编译代码
@@ -41,9 +41,9 @@ platform :ios do
   	  # 增加build版本号
   	increment_build_number
   	match(
-    	git_url: "https://github.com/zjh171/fastlaneProvingProfile",
+    	git_url: "https://gitee.com/wang1990.com/iosProvingProfile.git",
     	type: "appstore" ,#can be appstore,adhoc, development,enterprise
-    	app_identifier:"com.wangliang.fastlaneDemo",
+    	app_identifier:"com.youhong.fastlaneDemo",
     	username:"283175161@qq.com",
     	readonly: true
     	)
