@@ -11,9 +11,11 @@ import XCTest
 
 class fastlaneDemoTests: XCTestCase {
     
+    var flag: Bool = false
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
     
     override func tearDown() {
@@ -24,6 +26,8 @@ class fastlaneDemoTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertTrue(flag)
+        
     }
     
     func testPerformanceExample() {
