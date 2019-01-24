@@ -107,7 +107,7 @@ platform :ios do
           test: true, 
           scheme: "fastlaneDemo", 
           workspace: "fastlaneDemo.xcworkspace",
-          enableCodeCoverage: "true",
+          enableCodeCoverage: true,
           destination: "platform=iOS Simulator,name=iPhone 8 Plus,OS=12.1"
       )
       UI.message("success xcodebuild")
@@ -120,12 +120,12 @@ platform :ios do
           json_report: "true",
           legacy_support: "true",
           include_test_targets: "true",
-          output_directory: "./fastlaneDemoTestReports"
+          output_directory: "./testReports"
       )
       UI.message("success xcov")
 
       desc "读取覆盖率"
-      file = File.read(File.absolute_path("../fastlaneDemoTestReports/report.json"))
+      file = File.read(File.absolute_path("../testReports/report.json"))
       if file
           data = JSON.parse(file)
           UI.message(data)
