@@ -16,9 +16,10 @@
 default_platform(:ios)
 
 platform :ios do
+
   	desc "Description of what the lane does"
 
-   lane :uiretest do |options|
+    lane :uiretest do |options|
       scheme_to_test = "BMWUITests"
       scan_options = {
         scheme: scheme_to_test,
@@ -49,54 +50,88 @@ platform :ios do
       end
     end
 
-  	lane :beta do
-    increment_build_number
-    match(
-    	git_url: "https://gitee.com/wang1990.com/iosProvingProfile.git",
-    	type: "development" ,#can be appstore,adhoc, development,enterprise
-    	app_identifier:"com.youhong.fastlaneDemo",
-    	username:"283175161@qq.com",
-    	readonly: true
+    lane :beta do
+      increment_build_number
+      match(
+      	  git_url: "https://gitee.com/wang1990.com/iosProvingProfile.git",
+      	  type: "development" ,#can be appstore,adhoc, development,enterprise
+      	  app_identifier:"com.youhong.fastlaneDemo",
+      	  username:"283175161@qq.com",
+      	  readonly: true
     	)
-    # 编译代码
-    gym(
-    	scheme:"fastlaneDemo",
-    	export_method:"development",
-    	output_directory:"./build",
-    	archive_path:"./Archive",       
+      #编译代码
+      gym(
+          scheme:"fastlaneDemo",
+          export_method:"development",
+          output_directory:"./build",
+          archive_path:"./Archive",       
     	)
-    firim(firim_api_token: "ed1421ff86837b720a7053684b934147")
-    tests
+      firim(firim_api_token: "ed1421ff86837b720a7053684b934147")
+      tests
   	end
 
-
-	lane :release do
-  	  # 增加build版本号
-  	increment_build_number
-  	match(
-    	git_url: "https://gitee.com/wang1990.com/iosProvingProfile.git",
-    	type: "appstore" ,#can be appstore,adhoc, development,enterprise
-    	app_identifier:"com.youhong.fastlaneDemo",
-    	username:"283175161@qq.com",
-    	readonly: true
+    lane :release do
+  	  #增加build版本号
+      increment_build_number
+      match(
+          git_url: "https://gitee.com/wang1990.com/iosProvingProfile.git",
+          type: "appstore" ,#can be appstore,adhoc, development,enterprise
+          app_identifier:"com.youhong.fastlaneDemo",
+          username:"283175161@qq.com",
+          readonly: true
     	)
-  	# 编译代码
-    gym(
-    	scheme:"fastlaneDemo",
-    	export_method:"app-store"
+      #编译代码
+      gym(
+          scheme:"fastlaneDemo",
+          export_method:"app-store"
     	)
-    # 发布到Apple Store
-    deliver(
-    	username:"283175161@qq.com",
-      	skip_screenshots:true,
-      	force:true,
-      	submit_for_review:true,
+      #发布到Apple Store
+      deliver(
+          username:"283175161@qq.com",
+          skip_screenshots:true,
+          force:true,
+          submit_for_review:true,
     	)
   	end
 
-  	# 添加测试Unit Test 
-	lane :tests do
-	run_tests(scheme: "fastlaneDemoTests")
-	end
+    #添加测试Unit Test 
+    lane :tests do
+      run_tests(scheme: "fastlaneDemoTests")
+    end
+
+
+    lane :unittest do
+
+      UI.message("start xcodebuild")
+      xcodebuild(
+          test: true, 
+          scheme: "fastlaneDemo", 
+          workspace: "fastlaneDemo.xcworkspace",
+          destination: "platform=iOS Simulator,name=iPhone 8 Plus,OS=12.1"
+      )
+      UI.message("success xcodebuild")
+
+      UI.message("start xcov")
+      xcov(
+          workspace: "fastlaneDemo.xcworkspace",
+          scheme: "fastlaneDemo",
+          html_report: "true",
+          json_report: "true",
+          output_directory: "fastlaneDemoTestReports"
+      )
+      UI.message("success xcov")
+
+      desc "读取覆盖率"
+      file = File.read(File.absolute_path("../fastlaneDemoTestReports/report.json"))
+      if file
+          data = JSON.parse(file)
+          UI.message(data)
+          UI.message(data["coverage"])
+      else
+          UI.error("Unable open file!")
+          return
+      end
+
+    end
   
 end
