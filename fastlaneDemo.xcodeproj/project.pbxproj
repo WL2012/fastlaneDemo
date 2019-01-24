@@ -14,6 +14,7 @@
 		EF1C127121F070A2006C8B55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF1C126F21F070A2006C8B55 /* LaunchScreen.storyboard */; };
 		EF1C127C21F070A2006C8B55 /* fastlaneDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1C127B21F070A2006C8B55 /* fastlaneDemoTests.swift */; };
 		EF1C128721F070A2006C8B55 /* fastlaneDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1C128621F070A2006C8B55 /* fastlaneDemoUITests.swift */; };
+		EFB652C921F9BB8A0048FEC2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB652C821F9BB8A0048FEC2 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		EF1C128221F070A2006C8B55 /* fastlaneDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fastlaneDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF1C128621F070A2006C8B55 /* fastlaneDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fastlaneDemoUITests.swift; sourceTree = "<group>"; };
 		EF1C128821F070A2006C8B55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFB652C821F9BB8A0048FEC2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				EF1C126621F070A2006C8B55 /* AppDelegate.swift */,
 				EF1C126821F070A2006C8B55 /* ViewController.swift */,
+				EFB652C821F9BB8A0048FEC2 /* Person.swift */,
 				EF1C126A21F070A2006C8B55 /* Main.storyboard */,
 				EF1C126D21F070A2006C8B55 /* Assets.xcassets */,
 				EF1C126F21F070A2006C8B55 /* LaunchScreen.storyboard */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB652C921F9BB8A0048FEC2 /* Person.swift in Sources */,
 				EF1C126921F070A2006C8B55 /* ViewController.swift in Sources */,
 				EF1C126721F070A2006C8B55 /* AppDelegate.swift in Sources */,
 			);
