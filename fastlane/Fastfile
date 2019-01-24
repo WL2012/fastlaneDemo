@@ -124,13 +124,13 @@ platform :ios do
           json_report: "true",
           # legacy_support: "xccoverage",
           # include_test_targets: "true",
-          output_directory: "testReports"
+          output_directory: "./fastlane/xcov_output"
       )
       UI.message("success xcov")
       puts "---success xcov---------------"
 
       desc "读取覆盖率"
-      file = File.read(File.absolute_path("../testReports/report.json"))
+      file = File.read(File.absolute_path("../fastlane/xcov_output/report.json"))
       if file
           data = JSON.parse(file)
           UI.message(data)
