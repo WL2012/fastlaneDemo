@@ -102,19 +102,28 @@ platform :ios do
 
     lane :unittest do
       
-      puts "---start xcodebuild---------------"
-      UI.message("start xcodebuild")
-      xcodebuild(
-          test: true, 
-          scheme: "fastlaneDemo", 
-          workspace: "fastlaneDemo.xcworkspace",
-          # enableCodeCoverage: "YES",
-          destination: "platform=iOS Simulator,name=iPhone 8 Plus,OS=12.1"
-      )
-      UI.message("success xcodebuild")
-      puts "---success xcodebuild---------------"
+      # puts "---start xcodebuild---------------"
+      # UI.message("start xcodebuild")
+      # xcodebuild(
+      #     test: true, 
+      #     scheme: "fastlaneDemo", 
+      #     workspace: "fastlaneDemo.xcworkspace",
+      #     destination: "platform=iOS Simulator,name=iPhone 8 Plus,OS=12.1"
+      # )
+      # UI.message("success xcodebuild")
+      # puts "---success xcodebuild---------------"
       
-      scan(code_coverage:true)
+
+        #       device: 'iPhone 7',
+        # output_types: 'junit',
+        # output_directory: 'test-reports',
+        # custom_report_file_name: 'BMWUIReport.xml'
+      scan(
+          workspace: "fastlaneDemo.xcworkspace",
+          scheme: "fastlaneDemo",
+          device: 'iPhone 7',
+          code_coverage:true
+          )
 
       puts "---start xcov---------------"
       UI.message("start xcov")
