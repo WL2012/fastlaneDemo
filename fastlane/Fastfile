@@ -132,7 +132,7 @@ platform :ios do
           scheme: "fastlaneDemo",
           html_report: "true",
           json_report: "true",
-          # legacy_support: true,
+          legacy_support: true,
           # include_test_targets: "true",
           output_directory: "testReports"
       )
