@@ -101,7 +101,7 @@ platform :ios do
 
 
     lane :unittest do
-
+      
       UI.message("start xcodebuild")
       xcodebuild(
           test: true, 
@@ -112,6 +112,8 @@ platform :ios do
       )
       UI.message("success xcodebuild")
 
+      scan(code_coverage:true)
+      
       UI.message("start xcov")
       xcov(
           workspace: "fastlaneDemo.xcworkspace",
