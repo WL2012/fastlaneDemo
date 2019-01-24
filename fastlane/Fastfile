@@ -117,6 +117,7 @@ platform :ios do
           scheme: "fastlaneDemo",
           html_report: "true",
           json_report: "true",
+          legacy_support: "true"
           output_directory: "fastlaneDemoTestReports"
       )
       UI.message("success xcov")
