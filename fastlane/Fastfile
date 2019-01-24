@@ -108,7 +108,7 @@ platform :ios do
           test: true, 
           scheme: "fastlaneDemo", 
           workspace: "fastlaneDemo.xcworkspace",
-          enableCodeCoverage: "YES",
+          # enableCodeCoverage: "YES",
           destination: "platform=iOS Simulator,name=iPhone 8 Plus,OS=12.1"
       )
       UI.message("success xcodebuild")
@@ -122,9 +122,9 @@ platform :ios do
           scheme: "fastlaneDemo",
           html_report: "true",
           json_report: "true",
-          legacy_support: "xccoverage",
-          include_test_targets: "true",
-          output_directory: "./testReports"
+          # legacy_support: "xccoverage",
+          # include_test_targets: "true",
+          output_directory: "testReports"
       )
       UI.message("success xcov")
       puts "---success xcov---------------"
