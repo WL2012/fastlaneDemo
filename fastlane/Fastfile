@@ -17,6 +17,21 @@ default_platform(:ios)
 
 platform :ios do
 
+    lane :test_comand do |options|
+      p "#{options}"
+      if options == nil
+        p "test_comand success"
+        return
+      end
+      
+      if Float([:a]) > 100
+        p "大于100"
+      else
+        p "小于100"
+      end
+      p "test_comand success"
+    end
+
   	desc "Description of what the lane does"
 
     lane :uiretest do |options|
@@ -99,31 +114,56 @@ platform :ios do
       run_tests(scheme: "fastlaneDemoTests")
     end
 
-
-    lane :unittest do
+    desc "use xcode for Unit Test"
+    lane :test_xcodebuild do |options|
       
-      # puts "---start xcodebuild---------------"
-      # UI.message("start xcodebuild")
-      # xcodebuild(
-      #     test: true, 
-      #     scheme: "fastlaneDemo", 
-      #     workspace: "fastlaneDemo.xcworkspace",
-      #     destination: "platform=iOS Simulator,name=iPhone 8 Plus,OS=12.1"
-      # )
-      # UI.message("success xcodebuild")
-      # puts "---success xcodebuild---------------"
-      
+      puts "options: #{options}"
+      destination = "platform=iOS Simulator,name=iPhone 8 Plus,OS=11.2"
+      if Float(options[:xcode]) > 9.2 
+          destination = "platform=iOS Simulator,name=iPhone 8 Plus,OS=12.1"
+      end
 
-        #       device: 'iPhone 7',
-        # output_types: 'junit',
-        # output_directory: 'test-reports',
-        # custom_report_file_name: 'BMWUIReport.xml'
+      puts "---start xcodebuild---------------"
+      UI.message("start xcodebuild")
+      xcodebuild(
+          test: true, 
+          scheme: "fastlaneDemo", 
+          workspace: "fastlaneDemo.xcworkspace",
+          destination: "platform=iOS Simulator,name=iPhone 8 Plus,OS=11.2"
+      )
+      UI.message("success xcodebuild")
+      puts "---success xcodebuild---------------"
+
+      #生成测试报告
+      test_xcov options
+
+    end
+
+    desc "use fastlane scan for Unit Test"
+    lane :test_scan do |options|
+
+      puts "---start fastlane scan---------------"
+      UI.message("start fastlane scan")
       scan(
           workspace: "fastlaneDemo.xcworkspace",
           scheme: "fastlaneDemo",
           device: 'iPhone 7',
           code_coverage:true
           )
+      UI.message("success fastlane scan")
+      puts "---success fastlane scan---------------"
+
+      #生成测试报告
+      test_xcov options
+
+    end
+
+    lane :test_xcov do |options|
+
+      is_legacy_support = true
+      if Float(options[:xcode]) > 9.2
+        is_legacy_support = false
+      end
 
       puts "---start xcov---------------"
       UI.message("start xcov")
@@ -132,14 +172,12 @@ platform :ios do
           scheme: "fastlaneDemo",
           html_report: "true",
           json_report: "true",
-          legacy_support: true,
-          # include_test_targets: "true",
+          legacy_support: is_legacy_support,
           output_directory: "testReports"
       )
       UI.message("success xcov")
       puts "---success xcov---------------"
 
-      desc "读取覆盖率"
       file = File.read(File.absolute_path("../testReports/report.json"))
       if file
           data = JSON.parse(file)
