@@ -122,7 +122,6 @@ platform :ios do
           scheme: "fastlaneDemo",
           html_report: "true",
           json_report: "true",
-          ignore_file_path: "./fastlane/xcovignore",
           # legacy_support: "xccoverage",
           # include_test_targets: "true",
           output_directory: "testReports"
