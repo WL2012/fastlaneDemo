@@ -82,7 +82,8 @@ platform :ios do
           archive_path:"./Archive",       
     	)
       firim(firim_api_token: "ed1421ff86837b720a7053684b934147")
-      tests
+      
+      test_scan xcode:9.2
   	end
 
     lane :release do
