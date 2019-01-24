@@ -107,7 +107,7 @@ platform :ios do
           test: true, 
           scheme: "fastlaneDemo", 
           workspace: "fastlaneDemo.xcworkspace",
-          enableCodeCoverage: true,
+          enableCodeCoverage: YES,
           destination: "platform=iOS Simulator,name=iPhone 8 Plus,OS=12.1"
       )
       UI.message("success xcodebuild")
